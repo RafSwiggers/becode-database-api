@@ -21,4 +21,22 @@ if ($result->num_rows > 0) {
     echo "0 results";
 }
 $conn->close();
+
+echo "<form method='GET'>
+<input type='text' id='title' name='title'>
+</input>
+<input type='text' id='content' name='content'>
+</input>
+<button>Submit</button>
+</form>";
+if(isset($title)){
+    $sql = "INSERT INTO notes (title, content)
+VALUES ('$title', '$content')";
+if ($conn->query($sql) === TRUE) {
+    echo "New record created successfully";
+} else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+}
+}
+$conn->close();
 ?>
