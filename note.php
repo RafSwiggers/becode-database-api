@@ -21,10 +21,10 @@ if(isset($_POST['content'])){
         VALUES ('$title', '$content')";
 
         if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
+        return "New record created successfully";
 
         } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        return "Error: " . $sql . "<br>" . $conn->error;
         }
 
     } elseif (isset($_POST['update'])) {
@@ -32,9 +32,9 @@ if(isset($_POST['content'])){
         SET content = '$update'
         WHERE Title = '$title'";
         if ($conn->query($sql) === TRUE) {
-            echo "Succesfully updated ".$title;
+            return "Succesfully updated ".$title;
             } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+            return "Error: " . $sql . "<br>" . $conn->error;
             }
 }
 }
@@ -52,9 +52,9 @@ if (isset($_GET['show'])){
                 $i++;
       
         }
-        print json_encode($array_result); 
+        return json_encode($array_result); 
     } else {
-        echo "0 results";
+        return "0 results";
     }
 }
 
@@ -71,18 +71,18 @@ if (isset($_GET['search'])){
                 $i++;
       
         }
-        print json_encode($array_result); 
+        return json_encode($array_result); 
     } else {
-        echo "0 results";
+        return "0 results";
     }
 };
 if(isset($_GET['delete'])){
     $sql = "DELETE FROM notes WHERE title = '$delete'";
     if ($conn->query($sql) === TRUE) {
-    echo "Record deleted";
+    return "Record deleted";
 
     } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+    return "Error: " . $sql . "<br>" . $conn->error;
     }
     
 }
